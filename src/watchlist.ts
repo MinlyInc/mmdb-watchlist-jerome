@@ -25,3 +25,8 @@ export function markWatched(list: WatchlistItem[], id: number): WatchlistItem[] 
 export function unwatched(list: WatchlistItem[]): WatchlistItem[] {
   return list.filter((item) => !item.watched);
 }
+
+/** The films the user has actually rated only */
+export function rated(list: WatchlistItem[]): WatchlistItem[]{
+    return list.filter((item) => item.rating !== null)
+}
