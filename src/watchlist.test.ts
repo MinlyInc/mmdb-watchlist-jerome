@@ -73,6 +73,6 @@ describe("rated", () => {
       film({ id: 5, rating: 0}),
       film({ id: 6, rating: null}),
     ];
-    expect(unwatched(list).map((f) => f.id)).toEqual([2, 3]);
+    expect(rated(list)).toHaveLength(4);
   });
 });
