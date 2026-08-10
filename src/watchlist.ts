@@ -73,3 +73,8 @@ export function stats(data: WatchlistItem[]): WatchlistStats {
       ).length,
   };
 }
+
+/** The films the user has actually rated only */
+export function rated(list: WatchlistItem[]): WatchlistItem[] {
+  return list.filter((item) => item.rating !== null);
+}
