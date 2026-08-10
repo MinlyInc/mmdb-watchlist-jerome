@@ -34,8 +34,9 @@ export function stats(data: WatchlistItem[]): WatchlistStats {
   let ratingTotal = 0;
 
   for (const item of data) {
-    if(item.runtimeMinutes === 0 || item.runtimeMinutes === null)
+    if(item.runtimeMinutes === 0 || item.runtimeMinutes === null){
       continue ;
+    }
     runtime += item.runtimeMinutes ;
     ratingTotal += item.rating ;
   }
