@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { add, markWatched, remove, unwatched, rated,stats } from "./watchlist.ts";
+import { add, markWatched, remove, unwatched, rated, stats } from "./watchlist.ts";
 import type { WatchlistItem } from "./types.ts";
 
 function film(overrides: Partial<WatchlistItem> = {}): WatchlistItem {
@@ -68,10 +68,10 @@ describe("rated", () => {
     const list = [
       film({ id: 1, rating: null }),
       film({ id: 2, rating: 9 }),
-      film({ id: 3, rating: 10}),
-      film({ id: 4, rating: 1}),
-      film({ id: 5, rating: 0}),
-      film({ id: 6, rating: null}),
+      film({ id: 3, rating: 10 }),
+      film({ id: 4, rating: 1 }),
+      film({ id: 5, rating: 0 }),
+      film({ id: 6, rating: null }),
     ];
     expect(rated(list)).toHaveLength(4);
   });
