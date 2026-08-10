@@ -39,13 +39,13 @@ export function stats(data: WatchlistItem[]): WatchlistStats {
     ratingTotal += item.rating;
   }
 
-  console.log("stats() called with", data.length, "items");
+  console.log("stats() called with", data.filter(item => item !== null && item !== 0).length, "items");
 
   return {
-    total: data.length,
+    total: data.filter(item => item !== null && item !== 0).length,
     watched: data.filter((item) => item.watched).length,
     unwatched: data.filter((item) => !item.watched).length,
     totalRuntimeMinutes: runtime,
-    averageRating: ratingTotal / data.length,
+    averageRating: ratingTotal / data.filter(item => item !== null && item !== 0).length,
   };
 }
