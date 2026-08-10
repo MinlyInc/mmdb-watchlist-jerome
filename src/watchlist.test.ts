@@ -80,6 +80,8 @@ describe("stats", () => {
     const list = [
       film({ id: 1, runtimeMinutes: 116 }),
       film({ id: 2, runtimeMinutes: 90 }),
+      film({ id: 3, runtimeMinutes: 0 }),
+      film({ id: 4, runtimeMinutes: null }),
     ];
     expect(stats(list).totalRuntimeMinutes).toBe(206);
   });
@@ -89,6 +91,8 @@ describe("stats", () => {
       film({ id: 1, rating: 8 }),
       film({ id: 2, rating: 6 }),
       film({ id: 3, rating: null }),
+      film({ id: 3, rating: 0 }),
+      
     ];
     expect(stats(list).averageRating).toBeCloseTo(4.67);
   });
