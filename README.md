@@ -20,6 +20,7 @@ npm test
 | `markWatched(list, id)` | Marks a film watched. |
 | `unwatched(list)` | The films still to watch, in the order they were added. |
 | `rated(list)` | Returns the films user has rated. |
+| `stats(list)` | A summary: how many, how long, and the average rating. |
 
 Every function returns a **new** list rather than changing the one you passed in.
 
