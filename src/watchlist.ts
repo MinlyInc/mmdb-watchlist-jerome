@@ -40,35 +40,36 @@ export function stats(data: WatchlistItem[]): WatchlistStats {
   }
 
   console.log(
-  "stats() called with",
-  data.filter(
-    (item) =>
-      item.rating !== 0 &&
-      item.rating !== null &&
-      item.runtimeMinutes !== 0 &&
-      item.runtimeMinutes !== null,
-  ).length,
-  "items",
-);
+    "stats() called with",
+    data.filter(
+      (item) =>
+        item.rating !== 0 &&
+        item.rating !== null &&
+        item.runtimeMinutes !== 0 &&
+        item.runtimeMinutes !== null,
+    ).length,
+    "items",
+  );
 
   return {
     total: data.filter(
-    (item) =>
-      item.rating !== 0 &&
-      item.rating !== null &&
-      item.runtimeMinutes !== 0 &&
-      item.runtimeMinutes !== null,
+      (item) =>
+        item.rating !== 0 &&
+        item.rating !== null &&
+        item.runtimeMinutes !== 0 &&
+        item.runtimeMinutes !== null,
     ).length,
     watched: data.filter((item) => item.watched).length,
     unwatched: data.filter((item) => !item.watched).length,
     totalRuntimeMinutes: runtime,
     averageRating:
-      ratingTotal / data.filter(
-    (item) =>
-      item.rating !== 0 &&
-      item.rating !== null &&
-      item.runtimeMinutes !== 0 &&
-      item.runtimeMinutes !== null,
-  ).length,
+      ratingTotal /
+      data.filter(
+        (item) =>
+          item.rating !== 0 &&
+          item.rating !== null &&
+          item.runtimeMinutes !== 0 &&
+          item.runtimeMinutes !== null,
+      ).length,
   };
 }
