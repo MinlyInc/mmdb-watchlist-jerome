@@ -40,6 +40,7 @@ export function stats(data: WatchlistItem[]): WatchlistStats {
     runtime += item.runtimeMinutes ;
     ratingTotal += item.rating ;
   }
+}
 
   console.log("stats() called with", data.length, "items");
 
