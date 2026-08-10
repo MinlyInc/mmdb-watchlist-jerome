@@ -1,4 +1,4 @@
-import type { WatchlistItem } from "./types.ts";
+import type { WatchlistItem, WatchlistStats } from "./types.ts";
 
 /**
  * Adds a film to the watchlist.
@@ -21,7 +21,55 @@ export function markWatched(list: WatchlistItem[], id: number): WatchlistItem[] 
   return list.map((item) => (item.id === id ? { ...item, watched: true } : item));
 }
 
-/** The films still to watch, in the order they were added. */
+/** The films still to watch, best rated first. */
 export function unwatched(list: WatchlistItem[]): WatchlistItem[] {
-  return list.filter((item) => !item.watched);
+  return list
+    .filter((item) => !item.watched)
+    .sort((a, b) => (b.rating ?? 0) - (a.rating ?? 0));
+}
+
+/** Summarises a watchlist: how much is on it, how long it would take, how good it is. */
+export function stats(data: WatchlistItem[]): WatchlistStats {
+  let runtime = 0;
+  let ratingTotal = 0;
+
+  for (const item of data) {
+    if (!item.runtimeMinutes || !item.rating) continue;
+    runtime += item.runtimeMinutes;
+    ratingTotal += item.rating;
+  }
+
+  console.log(
+    "stats() called with",
+    data.filter(
+      (item) =>
+        item.rating !== 0 &&
+        item.rating !== null &&
+        item.runtimeMinutes !== 0 &&
+        item.runtimeMinutes !== null,
+    ).length,
+    "items",
+  );
+
+  return {
+    total: data.filter(
+      (item) =>
+        item.rating !== 0 &&
+        item.rating !== null &&
+        item.runtimeMinutes !== 0 &&
+        item.runtimeMinutes !== null,
+    ).length,
+    watched: data.filter((item) => item.watched).length,
+    unwatched: data.filter((item) => !item.watched).length,
+    totalRuntimeMinutes: runtime,
+    averageRating:
+      ratingTotal /
+      data.filter(
+        (item) =>
+          item.rating !== 0 &&
+          item.rating !== null &&
+          item.runtimeMinutes !== 0 &&
+          item.runtimeMinutes !== null,
+      ).length,
+  };
 }
